@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container" >
+     <div class="row my_row_class">
+            <div class="mx-auto">
+                <p><a href="{% url 'pages:index' %}">Bookings</a> | {{ booking.id }} </p>
+            </div>
+        </div>
+    </div>
+
+
+     <div class="row">
+    <div class="col-12 col-sm-12 col-lg-9">
+
+                  <button class="btn-info  btn-sm float-right mb-2 "  data-toggle="modal" data-target="#inquiryModal">Apply fot this Job</button>
+
+
+    </div>
+</div>
+
+
+
+
+    <div class="booking-detail section">
+    <div class="container" >
+        <div class="row mx-auto">
+            <div class="col-12 col-sm-12 col-lg-9 ">
+
+
+
+
+                <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col">Job Summary</th>
+                          <th scope="col">{{ booking.dance_style }} Dance hen party in {{ booking.city }} <br>
+                              {{ booking.event_date|date:"l jS   F Y" }} from {{ booking.start_time }}-{{ booking.end_time }}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <tr>
+                          <th scope="row">Booking id</th>
+                          <td>{{ booking.id  }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Contact Person</th>
+                          <td>{{ booking.name | truncatewords:1 }}</td>
+                        </tr>
+
+                        <tr>
+                          <th scope="row">City</th>
+                          <td>{{ booking.city  }}</td>
+                        </tr>
+
+
+
+                        <tr>
+                            <th>Date of Event :</th>
+                            <td>{{ booking.event_date|date:"l jS   F Y" }}</td>
+                        </tr>
+                        <tr>
+                            <th>Time of Event :</th>
+                            <td>{{ booking.start_time }}-{{ booking.end_time  }}</td>
+                        </tr>
+                        <tr>
+                            <th>Dance Style :</th>
+                            <td>{{ booking.dance_style }}</td>
+                        </tr>
+
+
+
+
+                         <tr>
+                            <td>Workshop Booked</td>
+                            <td>{% if booking.booking_sent == False %}
+                                <button type="button" class="btn-danger btn-sm ">not Booked</button>
+                                {% else %}
+                                <button type="button" class="btn-info btn-sm">Booked</button>
+                                {% endif %}
+
+                            </td>
+                        </tr>
+
+
+                      <tr>
+                            <td>Teacher Confirmed</td>
+                            <td>
+                                {% if booking.teacher_confirmed == False %}
+                                <button type="button" class="btn-danger btn-sm ">Teacher NOT confirmed</button>
+                                {% else %}
+                                <button type="button" class="btn-info btn-sm">Teacher Confirmed</button>
+                                {% endif %}
+                            {% if booking.teacher_confirmed == True %}
+                                <br><br><p>
+                            Although a  teacher is booked you can still apply for this position incase the vacancy becomes
+                            available
+                            </p>
+                            {% endif %}
+
+                            </td>
+                        </tr>
+
+
+
+
+
+                      </tbody>
+                    </table>
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+    </div>
+
+
+
+      <!-- Inquiry Modal -->
+  <div class="modal fade" id="inquiryModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="inquiryModalLabel">Apply for this Job</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'contact:contact' %}" method="POST">
+              {% csrf_token %}
+              {% if user.is_authenticated %}
+                  <input type="hidden" name="user_id" value="{{ user.id }}">
+              {% else %}
+                  <input type="hidden" name="user_id" value="0">
+              {% endif %}
+
+              <input type="hidden" name="booking_id" value="{{ booking.id }}">
+              <input type="hidden" name="booking_city" value="{{ booking.city }}">
+
+            <div class="form-group">
+              <label for="booking_name" class="col-form-label">Booking Name:</label>
+              <input type="text" name="booking_name" class="form-control"
+                     value="{{ booking.id }} : {{ booking.dance_style }} hen party  in {{ booking.city }} on {{ booking.event_date }}" >
+            </div>
+            <div class="form-group">
+              <label for="name" class="col-form-label">Name:</label>
+              <input type="text" name="name" class="form-control"
+                     {% if user.is_authenticated %} value="{{ user.name }}" {% endif %} required>
+            </div>
+            <div class="form-group">
+              <label for="email" class="col-form-label">Email:</label>
+              <input type="email" name="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="mobile" class="col-form-label">Mobile:</label>
+              <input type="text" name="mobile" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="message" class="col-form-label">Message:</label>
+              <textarea name="message" class="form-control"></textarea>
+            </div>
+          <div class="form-group">
+              <label for="contact_city" class="col-form-label">City:</label>
+              <input type="contact_city" name="contact_city" class="form-control" placeholder="City you reside in" required>
+            </div>
+            <div class="form-group">
+              <label for="dance_school" class="col-form-label">Dance School Attended:</label>
+              <input type="text" name="dance_school" class="form-control" placeholder="Ps let us know dance school attended if its your first time applying">
+            </div>
+            <div class="form-group">
+              <label for="experience" class="col-form-label">Experience:</label>
+              <textarea name="experience" class="form-control" placeholder="Ps let us know dance expeience if its your first time applying"></textarea>
+            </div>
+
+            <hr>
+            <input type="submit" value="Send" class="btn btn-block btn-secondary">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+
+
+
+    <div class="container" >
+     <div class="row my_row_class">
+            <div class="mx-auto">
+                <p><a href="{% url 'cities:venues' %}">Venues</a> | {{ venue.venue_name }} </p>
+            </div>
+        </div>
+    </div>
+
+
+     <div class="row">
+    <div class="col-12 col-sm-12 col-lg-9">
+        {% if request.user.is_staff %}
+        <a class="btn btn-info btn-sm float-right mb-2" href="{% url 'cities:venue-update'  venue.pk %}">Edit Venue Detail</a>
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+    <div class="booking-detail section">
+    <div class="container" >
+        <div class="row mx-auto">
+            <div class="col-12 col-sm-12 col-lg-9 ">
+
+
+               <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col">Venue Name</th>
+                          <th scope="col">{{ venue.venue_name }}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <tr>
+                          <th scope="row">Venue Address</th>
+                          <td>{{ venue.address }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">City</th>
+                          <td>{{ venue.city }}</td>
+                        </tr>
+
+                        <tr>
+                          <th scope="row">Email</th>
+                          <td>{{ venue.venue_email }}</td>
+                        </tr>
+
+
+
+                        <tr>
+                            <th>Contant Number</th>
+                            <td>{{venue.venue_phone }}</td>
+                        </tr>
+                        <tr>
+                            <th>Coordinator</th>
+                            <td>{{ venue.venue_coordinator }}</td>
+                        </tr>
+                        <tr>
+                            <th>Website</th>
+                            <td>{{ venue.venue_website }}</td>
+                        </tr>
+                        <tr>
+                            <th>Capacity</th>
+                            <td>{{ venue.capacity }}</td>
+                        </tr>
+                        <tr>
+                            <th>Cost</th>
+                            <td>{{ venue.cost }}</td>
+                        </tr>
+                        <tr>
+                            <th>No of Studios</th>
+                            <td>{{ venue.no_studios }}</td>
+                        </tr>
+                        <tr>
+                            <th>Notes</th>
+                            <td>{{ venue.notes }}</td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+{% endblock %}

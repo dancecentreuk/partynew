@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 mt-3">
+                 <h4> Delete Post </h4>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <h2>Are You sure you want to delete this booking <br>
+                            {{ object.dance_style }} for {{ object.name }} in {{ object.city }} on {{ object.event_date }} </h2>
+                        <button class="btn btn-outline-danger btn-sm mr-2 mb-2" type="submit">Yes Delete</button>
+                        <a class="btn btn-outline-success btn-sm mb-2" href="{% url 'bookings:booking' booking.id %}">Cancel </a>
+                    </form>
+            </div>
+            <div class="col-md-2"></div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+
+

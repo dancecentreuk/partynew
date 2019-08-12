@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+     <section id="showcase">
+    <div class="container text-center">
+      <div class="home-search p-5">
+        <div class="overlay p-5">
+
+
+          <div class="search">
+            <form action="{% url 'cities:venue-search' %}">
+              <!-- Form Row 1 -->
+              <div class="form-row">
+
+
+
+
+
+
+
+                <div class="offset-3 col-md-6 mb-3">
+                  <label class="sr-only">City</label>
+                  <select name="city" class="form-control">
+                    <option selected="true" disabled="disabled">City (All)</option>
+                    {% for key,value in city_choices %}
+                        <option value="{{ key }}">{{ value }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <!-- Form Row 2 -->
+
+              <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+         <h1>Venues</h1>
+
+    <div class="row mb-2">
+    <div class="col-md-12 text-right">
+        <a class="btn btn-outline-primary" href="{% url 'cities:venue-create' %}">Add Venue</a>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            {% if venues %}
+         <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Coordinator</th>
+      <th scope="col">City</th>
+      <th scope="col">cost</th>
+
+
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for venue in venues %}
+    <tr>
+      <th scope="row">{{ venue.id }}</th>
+      <td><a href="{% url 'cities:venue-detail' venue.id %}">{{ venue.venue_name }}</a></td>
+        <td>{{ venue.venue_phone }}</td>
+      <td>{{ venue.venue_email }}</td>
+      <td>{{ venue.venue_coordinator }}</td>
+      <td>{{ venue.city }}</td>
+      <td>£{{ venue.cost }} ph</td>
+
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+    {% else %}
+                <p>There are currently no venues that match your search</p>
+    {% endif %}
+        </div>
+    </div>
+
+
+
+{% endblock %}

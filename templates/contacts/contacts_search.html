@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+     <section id="showcase">
+    <div class="container text-center">
+      <div class="home-search p-5">
+        <div class="overlay p-5">
+
+
+          <div class="search">
+            <form action="{% url 'contact:contact-search' %}">
+              <!-- Form Row 1 -->
+              <div class="form-row">
+
+              <div class="col-md-4 mb-3">
+                  <label class="sr-only">Name</label>
+                  <input type="text" name="name" class="form-control" placeholder="Name (first name)">
+                </div>
+
+              <div class="col-md-4 mb-3">
+                  <label class="sr-only">Teacher Residence</label>
+                  <input type="text" name="teacher_city" class="form-control" placeholder="Teacher City ">
+              </div>
+
+
+
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">City</label>
+                  <select name="booking_city" class="form-control">
+                    <option selected="true" disabled="disabled">City (All)</option>
+                    {% for key,value in city_choices %}
+                        <option value="{{ key }}">{{ value }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <!-- Form Row 2 -->
+
+              <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+         <h1>Messages</h1>
+
+
+
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            {% if teacher_messages %}
+         <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Booking id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Mobile</th>
+      <th scope="col">City</th>
+
+
+
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for message in teacher_messages %}
+    <tr>
+      <th scope="row">{{ message.id }}</th>
+      <td><a href="{% url 'bookings:booking' message.booking_id %}">{{ message.booking_id}}</a></td>
+        <td><a href="{% url 'contact:contact-details' message.id%}">{{ message.name}}</a></td>
+      <td>{{ message.mobile }}</td>
+      <td>{{ message.booking_city }}</td>
+
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+    {% else %}
+                <p>There are currently no messages</p>
+    {% endif %}
+        </div>
+    </div>
+
+
+
+{% endblock %}

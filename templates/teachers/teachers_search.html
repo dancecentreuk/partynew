@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+     <section id="showcase">
+    <div class="container text-center">
+      <div class="home-search p-5">
+        <div class="overlay p-5">
+
+
+          <div class="search">
+            <form action="{% url 'teachers:teachers-search' %}">
+              <!-- Form Row 1 -->
+              <div class="form-row">
+
+              <div class="col-md-4 mb-3">
+                  <label class="sr-only">Name</label>
+                  <input type="text" name="teachers_name" class="form-control" placeholder="Name (first name)">
+                </div>
+
+              <div class="col-md-4 mb-3">
+                  <label class="sr-only">Dance Style</label>
+                  <select name="style" class="form-control">
+                    <option selected="true" disabled="disabled">Dance Style (All)</option>
+                    {% for key,value in dance_styles %}
+                        <option value="{{ key }}">{{ value }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+
+
+
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">City</label>
+                  <select name="city" class="form-control">
+                    <option selected="true" disabled="disabled">City (All)</option>
+                    {% for key,value in city_choices %}
+                        <option value="{{ key }}">{{ value }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <!-- Form Row 2 -->
+
+              <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+         <h1>Teachers</h1>
+
+    <div class="row mb-2">
+    <div class="col-md-12 text-right">
+        <a class="btn btn-outline-primary" href="{% url 'teachers:teacher-create' %}">Add Teacher</a>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            {% if teachers %}
+         <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+        <th scope="col">Mobile</th>
+      <th scope="col">City</th>
+      <th scope="col">Style</th>
+
+
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for teacher in teachers %}
+    <tr>
+      <th scope="row">{{ teacher.id }}</th>
+      <td><a href="{% url 'teachers:teacher-detail' teacher.id %}">{{ teacher.first_name}} {{ teacher.last_name }}</a></td>
+        <td>{{ teacher.mobile }}</td>
+      <td>{{ teacher.city }}</td>
+      <td>{{ teacher.speciality }}</td>
+
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+    {% else %}
+                <p>There are currently no teachers</p>
+    {% endif %}
+        </div>
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+
+
+
+
+    <div class="booking-detail section">
+    <div class="container mb-2" >
+        <div class="row mx-auto">
+            <div class="col-12 col-sm-12 col-lg-9 mt-4">
+
+
+
+
+                <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col">Message ID</th>
+                          <th scope="col">{{ teacher_message.id }}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                      <tr>
+                          <th scope="row">Date Contacted</th>
+                          <td>{{ teacher_message.contact_date }}</td>
+                        </tr>
+
+                        <tr>
+                          <th scope="row">Booking id</th>
+                          <td><a href="{% url 'bookings:booking' teacher_message.booking_id %}">{{ teacher_message.booking_id }}</a></td>
+                        </tr>
+                        <tr>
+                            <th>Job</th>
+                            <td>{{ teacher_message.booking }}</td>
+                        </tr>
+                      <tr>
+                          <th scope="row">Booking City</th>
+                          <td>{{ teacher_message.booking_city }}</td>
+                        </tr>
+
+                        <tr>
+                          <th scope="row">Teacher Name</th>
+                          <td>{{ teacher_message.name }}</td>
+                        </tr>
+
+                        <tr>
+                          <th scope="row">Email</th>
+                          <td>{{ teacher_message.email }}</td>
+                        </tr>
+
+
+
+                        <tr>
+                            <th>Mobile</th>
+                            <td>{{ teacher_message.mobile }}</td>
+                        </tr>
+                        <tr>
+                            <th>Message</th>
+                            <td>{{ teacher_message.message }}</td>
+                        </tr>
+                      <tr>
+                          <th scope="row">Teacher resident </th>
+                          <td>{{ teacher_message.contact_city }}</td>
+                        </tr>
+                        <tr>
+                            <th>Dance School</th>
+                            <td>{{ teacher_message.dance_school }}</td>
+                        </tr>
+                          <tr>
+                                <th>Experience</th>
+                                <td>{{ teacher_message.experience }}</td>
+                            </tr>
+
+                      </tbody>
+                    </table>
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+    </div>
+
+
+
+
+{% endblock %}

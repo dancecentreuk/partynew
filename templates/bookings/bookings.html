@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+     <section id="showcase">
+    <div class="container text-center">
+      <div class="home-search p-5">
+        <div class="overlay p-5">
+
+
+          <div class="search">
+            <form action="{% url 'bookings:search' %}">
+              <!-- Form Row 1 -->
+              <div class="form-row">
+
+              <div class="col-md-4 mb-3">
+                  <label class="sr-only">Dance Style</label>
+                  <select name="style" class="form-control">
+                    <option selected="true" disabled="disabled">Dance Style (All)</option>
+                    {% for key,value in dance_choices %}
+                        <option value="{{ key }}">{{ value }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">Teacher Booked</label>
+                  <select name="teacher_booked" class="form-control">
+                    <option selected="true" disabled="disabled">Teacher Confirmed (All)</option>
+                    {% for key,value in options %}
+                        <option value="{{ key }}">{{ value }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">City</label>
+                  <select name="city" class="form-control">
+                    <option selected="true" disabled="disabled">City (All)</option>
+                    {% for key,value in city_choices %}
+                        <option value="{{ key }}">{{ value }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <!-- Form Row 2 -->
+
+              <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+    <div class="container" >
+        <h1>Bookings</h1>
+
+    <div class="row">
+    <div class="col-lg-12">
+        <a class="btn btn-info btn-sm float-right mb-2" href="{% url 'bookings:booking-create' %}">Create Booking</a>
+    </div>
+</div>
+    {% if bookings %}
+         <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">City</th>
+      <th scope="col">Style</th>
+      <th scope="col">Booking sent</th>
+      <th scope="col">Deposit</th>
+      <th scope="col">Date</th>
+      <th scope="col">Venue</th>
+      <th scope="col">Teacher</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for booking in bookings %}
+    <tr>
+      <th scope="row">{{ booking.id }}</th>
+      <td><a href="{% url 'bookings:booking' booking.id %}">{{ booking.name }}</a></td>
+      <td>{{ booking.city }}</td>
+      <td>{{ booking.dance_style | truncatewords:1 }}</td>
+      <td>
+          {% if booking.booking_sent == True %}
+            <span class="true_button">YES</span>
+          {% else %}
+            <span class="false_button">No</span>
+          {% endif %}
+      </td>
+      <td>
+          {% if booking.deposit_paid == True %}
+              <span class="true_button">PAID</span>
+          {% else %}
+              <span class="false_button">NP</span>
+          {% endif %}
+
+      <td>{{ booking.event_date }}</td>
+
+    <td>
+        {% if booking.venue_booked == True %}
+            <span class="true_button">Booked</span>
+        {% else %}
+            <span class="false_button">NB</span>
+        {% endif %}
+
+    </td>
+
+      <td>{{ booking.teacher }}</td>
+    </tr>
+
+
+
+
+
+
+    {% endfor %}
+  </tbody>
+</table>
+    {% else %}
+        <p>You currently have no bookings</p>
+    {% endif %}
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            {% if bookings.has_other_pages %}
+              <ul class="pagination">
+               {% if bookings.has_previous %}
+                   <li class="page-item">
+                        <a class="page-link" href="?page={{ bookings.previous_page_number }}">&laquo;</a>
+                    </li>
+               {% else %}
+                   <li class="page-item disabled">
+                      <a class="page-link" >&laquo;</a>
+                    </li>
+               {% endif %}
+              {% for i in bookings.paginator.page_range %}
+                  {% if bookings.number == i %}
+                      <li class="page-item active">
+                          <a class="page-link">{{ i }}</a>
+                        </li>
+                  {% else %}
+                      <li class="page-item">
+                          <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                      </li>
+                  {% endif %}
+              {% endfor %}
+              {% if bookings.has_next %}
+                   <li class="page-item">
+                        <a class="page-link" href="?page={{ bookings.next_page_number }}">&raquo;</a>
+                    </li>
+               {% else %}
+                   <li class="page-item disabled">
+                      <a class="page-link" >&raquo;</a>
+                    </li>
+               {% endif %}
+
+              </ul>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

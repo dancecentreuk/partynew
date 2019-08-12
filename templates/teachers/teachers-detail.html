@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+
+
+
+    <div class="container" >
+     <div class="row my_row_class">
+            <div class="mx-auto">
+                <p><a href="{% url 'teachers:teachers' %}">Teachers</a> | {{ teacher.first_name }} {{ teacher.last_name }} </p>
+            </div>
+        </div>
+    </div>
+
+
+     <div class="row">
+    <div class="col-12 col-sm-12 col-lg-9">
+        {% if request.user.is_staff %}
+        <a class="btn btn-info btn-sm float-right mb-2" href="{% url 'teachers:teacher-update' teacher.pk %}">Edit Teacher Detail</a>
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+    <div class="booking-detail section">
+    <div class="container" >
+        <div class="row mx-auto">
+            <div class="col-12 col-sm-12 col-lg-9 ">
+
+
+                <div class="row">
+        <div class="col-md-6">
+            <img src="{{ teacher.photo.url }}" alt="teacher">
+
+        </div>
+        <div class="col-md-6">{{ teacher.first_name }} {{ teacher.last_name }} <br>
+            {{ teacher.mobile }}<br>
+            {{ teacher.email }}<br>
+            {{ teacher.speciality }}<br>
+            {{ teacher.address }}<br>
+            {{ teacher.city }}<br>
+            {{ teacher.postcode }}<br>
+            £{{ teacher.fee }}ph<br>
+            {{ teacher.notes }}<br>
+        </div>
+    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+{% endblock %}

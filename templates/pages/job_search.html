@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+    <section id="showcase">
+    <div class="container text-center">
+      <div class="home-search p-5">
+        <div class="overlay p-5">
+
+
+          <div class="search">
+            <form action="{% url 'pages:job-search' %}">
+              <!-- Form Row 1 -->
+              <div class="form-row">
+
+              <div class="col-md-4 mb-3">
+                  <label class="sr-only">Dance Style</label>
+                  <select name="style" class="form-control">
+                    <option selected="true" disabled="disabled">Dance Style (All)</option>
+                    {% for key,value in dance_choices %}
+                        <option value="{{ key }}">{{ value }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">Teacher Booked</label>
+                  <select name="teacher_booked" class="form-control">
+                    <option selected="true" disabled="disabled">Teacher Confirmed (All)</option>
+                    {% for key,value in options %}
+                        <option value="{{ key }}">{{ value }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">City</label>
+                  <select name="city" class="form-control">
+                    <option selected="true" disabled="disabled">City (All)</option>
+                    {% for key,value in city_choices %}
+                        <option value="{{ key }}">{{ value }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <!-- Form Row 2 -->
+
+              <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+         <h1>Current Bookings</h1>
+
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            {% if bookings %}
+         <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">City</th>
+      <th scope="col">Style</th>
+
+      <th scope="col">Date</th>
+      <th scope="col">Client Confirmed</th>
+      <th scope="col">Teacher Booked</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for booking in bookings %}
+    <tr>
+      <th scope="row">{{ booking.id }}</th>
+      <td><a href="{% url 'pages:job' booking.id %}">{{ booking.name|truncatewords:1}}</a></td>
+      <td>{{ booking.city }}</td>
+      <td>{{ booking.dance_style }}</td>
+      <td>{{ booking.event_date }}</td>
+      <td>{{ booking.booking_sent }}</td>
+      <td>{{ booking.teacher_confirmed }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+    {% else %}
+        <p>There are currently no bookings matching your description ps widen your search or look back later we get new bookings on a  regular basis daily</p>
+    {% endif %}
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,1170 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <div class="container" >
+     <div class="row my_row_class">
+            <div class="mx-auto">
+                <p><a href="{% url 'bookings:bookings' %}">Bookings</a> | {{ booking.name }} </p>
+            </div>
+        </div>
+    </div>
+
+
+     <div class="row">
+    <div class="col-12 col-sm-12 col-lg-9">
+        {% if request.user.is_staff %}
+        <a class="btn btn-info btn-sm float-right mb-2 mr-2" href="{% url 'bookings:booking-update' booking.pk %}">Update Booking</a>
+        <a class="btn btn-danger btn-sm float-right mb-2 mr-2" href="{% url 'bookings:booking-delete' booking.pk %}">Delete Booking</a>
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+    <div class="booking-detail section">
+    <div class="container" >
+        <div class="row mx-auto">
+            <div class="col-12 col-sm-12 col-lg-9 ">
+
+
+            {{ request.user.is_superuser }}
+
+
+                <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col">Date Queried</th>
+                          <th scope="col">{{ booking.enquiry_date }}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Contact Person</th>
+                          <td>{{ booking.name }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Name of Hen :</th>
+                          <td>{{ booking.special_person }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Contact Mobile</th>
+                          <td colspan="2">{{ booking.phone }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email :</th>
+                            <td>{{ booking.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date of Event :</th>
+                            <td>{{ booking.event_date|date:"l jS   F Y" }}</td>
+                        </tr>
+                        <tr>
+                            <th>Time of Event :</th>
+                            <td>{{ booking.start_time }}-{{ booking.end_time  }}</td>
+                        </tr>
+                        <tr>
+                            <th>Dance Style :</th>
+                            <td>{{ booking.dance_style }}</td>
+                        </tr>
+                        <tr>
+                            <th>Price :</th>
+                            <td>£{{ booking.cost  }} if booked before  {{ booking.book_before_date|date:"l jS F Y" }} </td>
+                        </tr>
+                        <tr>
+                            <th> No of People :</th>
+                            <td>aproximately {{ booking.group_size }} (You can have as many people as you like)</td>
+                        </tr>
+                        <tr>
+                            <td>Teacher :</td>
+                            <td> {{ booking.teacher }}</td>
+                        </tr>
+                        <tr>
+                            <td>Teacher Confirmed</td>
+                            <td>{% if booking.teacher_confirmed == True %}
+                                <button type="button" class="btn-info">Teacher Confirmed</button>
+                                {% if booking.teacher_texted %}
+                                  <button type="button" class="btn-info">Teacher Texted</button>
+                                    {% if booking.teacher_paid %}
+                                        <button type="button" class="btn-info btn-sm">Teacher Paid</button>
+                                    {% else %}
+                                        <button type="button" class="btn-danger btn-sm">Teacher not paid</button>
+                                    {% endif %}
+                                    {% else %}
+                                        <button type="button" class="btn-danger btn-sm">Teacher not Texted</button>
+                                    {% endif %}
+                                {% else %}
+                                    <button type="button" class="btn-danger btn-sm">not Confirmed</button>
+                                {% endif %}
+                            </td>
+                        </tr>
+                         <tr>
+                            <td>Workshop Booked</td>
+                            <td>{% if booking.workshop_booked == False %}
+                                <button type="button" class="btn-danger btn-sm ">not Booked</button>
+                                {% else %}
+                                <button type="button" class="btn-info btn-sm">Booked</button>
+                                {% endif %}
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Deposit Paid</td>
+                            <td>{% if booking.deposit_paid == False %}
+                                <button type="button" class="btn-danger btn-sm">not paid</button>
+                                {% else %}
+                                <button type="button" class="btn-info btn-sm">paid</button>
+                                {% endif %}
+
+                            </td>
+                        </tr>
+                      <tr>
+                            <td>Balance Paid</td>
+                            <td>{% if booking.balance_paid == False %}
+                                <button type="button" class="btn-danger btn-sm">not paid</button>
+                                {% else %}
+                                <button type="button" class="btn-info btn-sm">paid</button>
+                                {% endif %}
+
+                            </td>
+                        </tr>
+                      <tr>
+                            <td>Venue Booked</td>
+                            <td>{% if booking.venue_booked == True %}
+                                <button type="button" class="btn-info btn-sm">booked</button>
+                                {% if booking.venue_paid %}
+                                  <button type="button" class="btn-info btn-sm">venue paid</button>
+                                {% else %}
+                                    <button type="button" class="btn-danger btn-sm">venue not paid</button>
+                                {% endif %}
+
+                                {% else %}
+                                <button type="button" class="btn-danger btn-sm">Not Booked</button>
+                                {% endif %}
+
+                            </td>
+                        </tr>
+                      <tr>
+                          <td>Venue :</td>
+                          <td>{{ booking.confirmed_venue }}, <br>{{ booking.confirmed_venue.address }} <br>
+                              {{ booking.confirmed_venue.postcode }}</td>
+                      </tr>
+                      <tr>
+                          <td>Notes</td>
+                          <td>{{ booking.booking_notes }}</td>
+                      </tr>
+
+                      </tbody>
+                    </table>
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+    </div>
+
+
+    <hr>
+    <hr>
+
+
+
+
+
+
+
+
+
+
+
+
+    <hr>
+    <hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="mb-4" id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          INITIAL ENQUIRY EMAIL REPLY
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="deodrant"  >
+
+
+<div class="email-reply ">
+        <div class="container" >
+
+
+
+
+            <p class="mt-5">Hi {{ booking.name }}, <br>
+
+                {% if booking.initial_chat %}
+                    As per our conversation, <br>
+                {% else %}
+                    {%  if not booking.phone %}
+                        do you have a  contact mobile number you can email over. <br> Alternatively
+                    {% else  %}
+                      we tried to get in contact with you earlier on <br>
+                    {% endif %}
+                {% endif %}
+            you can get in contact with James our hen party coordinator on 07846518558</p>
+
+
+                <p>we are able to accommodate you for your <br><span class="blackbold">
+
+
+                    {{ booking.dance_style }} Hen Party  for  {{ booking.name }} in {{ booking.city }} on <br>
+                    {{ booking.event_date|date:"l dS F Y" }} from {{ booking.start_time }} - {{ booking.end_time }}<br> </span>
+                    <br>
+                  We have a dance studio which is situated in the city centre in {{ booking.city }}</p>
+
+                <p>With over 2000 dance hen parties under our belt we run hen parties for many of the large hen party companies in the uk on a weekly basis </p>
+                <p class="exsadie">We currently have a special offer where if you book before the {{ booking.book_before_date|date:"l jS   F Y" }}  your dance party is £{{ booking.cost }}  all inclusive (that’s the same amount we charge the hen party companies)
+                    it lasts for 1.5 hrs and you can have as many people as you like at your  party . <br> <br>
+
+                You also have the option of a 1 hr dance hen party session  if you have a small group  for £{{ booking.cost|add:"-35" }} </p>
+
+
+
+
+
+                <p>On booking there is a  £50 deposit to secure the dance studio   and the balance is paid up 2  days  before the workshop <br>
+                </p><br><br>
+
+              <p class="exsadie">LOCATIONS</p>
+
+
+
+                <p>LOCATION 1 <br>
+                    {{ booking.studio }} @ <br>
+                    {{ booking.venue_1.address}}<br>
+                    {{ booking.city }}<br>
+                    {{ booking.venue_1.postcode }}</p><br>
+
+                    {% if booking.venue_2 %}
+
+
+                    <p>LOCATION 2 <br><strong>{{ booking.city }} Dance Centre </strong><br>
+                        {{ booking.venue_2.address}}<br>
+                        {{ booking.city }}<br>
+                        {{ booking.venue_2.postcode }}</p>
+
+                    {% endif %}
+
+
+
+
+                <p class="exsadie"> These are the details we have for you....  to help us assist you more efficiently we need the following details </p>
+
+
+                    {% if not booking.phone %}
+                        1.)  A contact  mobile number <br>
+                    {% endif %}
+
+                     {% if not booking.special_person %}
+                        2.) the name of the Special person ( ie bride,  stag or birthday person ) <br>
+                    {% endif %}
+
+                    {% if not booking.event_date %}
+                        3.) Your preferred date for your dance workshop <br>
+                    {% endif %}
+
+                   {% if not booking.start_time %}
+                        4.) Your preferred time for your dance workshop <br>
+                    {% endif %}
+
+                    {% if not booking.group_size %}
+                        4.) an approximate number of guests <br>
+                    {% endif %}
+
+                    {% if not booking.dance_style %}
+                     5.) Your preferred dance style <br><br><br>
+
+                    {% endif %}
+
+                <br>
+
+
+
+
+
+
+
+
+<div class="col-lg-8">
+
+                <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Date Queried</th>
+                  <th scope="col">{{ booking.enquiry_date  }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Organiser</th>
+                  <td>{{ booking.name }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Name of Hen :</th>
+                  <td>{{ booking.special_person }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Contact Mobile</th>
+                  <td colspan="2">{{ booking.phone }}</td>
+                </tr>
+                <tr>
+                    <th>Email :</th>
+                    <td>{{ booking.email }}</td>
+                </tr>
+                <tr>
+                    <th>Date of Event :</th>
+                    <td>{{ booking.event_date|date:"l dS F Y" }}</td>
+                </tr>
+                <tr>
+                    <th>Time of Event :</th>
+                    <td>{{ booking.start_time }}-{{ booking.end_time  }}</td>
+                </tr>
+                <tr>
+                    <th>Dance Style :</th>
+                    <td>{{ booking.dance_style }}</td>
+                </tr>
+                <tr>
+                    <th>Price :</th>
+                    <td>£{{ booking.cost  }} if booked before  {{ booking.book_before_date|date:"l jS   F Y" }} </td>
+                </tr>
+                <tr>
+                    <th> No of People :</th>
+                    <td>aproximately {{ booking.group_size }} (You can have as many people as you like)</td>
+                </tr>
+              </tbody>
+            </table>
+    <br>
+</div>
+
+            <p>Kind regards <br>
+                {{ booking.studio }} <br>
+                Admin Team </p><br>
+
+
+
+
+            {% if booking.dance_style_id == 1 %}
+
+                    {% include 'dances/_beyonce.html' %}
+
+
+                {% elif booking.dance_style_id == 5 %}
+
+                    {% include 'dances/_80s.html' %}
+
+                {% elif booking.dance_style_id == 3 %}
+
+                    {% include 'dances/_belly.html' %}
+
+                {% elif booking.dance_style_id == 7 %}
+
+                    {% include 'dances/_bollywood.html' %}
+
+                {% elif booking.dance_style_id == 2 %}
+
+                    {% include 'dances/_burlesque.html' %}
+
+                {% elif booking.dance_style_id == 8 %}
+
+                    {% include 'dances/_cheerleading.html' %}
+
+                {% elif booking.dance_style_id == 9 %}
+
+                    {% include 'dances/_chicago.html' %}
+
+                {% elif booking.dance_style_id == 11 %}
+
+                    {% include 'dances/_dirty_dancing.html' %}
+
+                {% elif booking.dance_style_id == 4 %}
+
+                    {% include 'dances/_fame.html' %}
+
+                {% elif booking.dance_style_id == 12 %}
+
+                    {% include 'dances/_flamenco.html' %}
+
+                {% elif booking.dance_style_id == 13 %}
+
+                    {% include 'dances/_flash.html' %}
+
+                {% elif booking.dance_style_id == 14 %}
+
+                    {% include 'dances/_grease.html' %}
+
+                {% elif booking.dance_style_id == 15 %}
+
+                    {% include 'dances/_pole.html' %}
+
+                {% elif booking.dance_style_id == 16 %}
+
+                    {% include 'dances/_salsa.html' %}
+
+                {% elif booking.dance_style_id == 10 %}
+
+                    {% include 'dances/_commercial.html' %}
+
+                {% elif booking.dance_style_id == 17 %}
+
+                    {% include 'dances/_thriller.html' %}
+
+                {% elif booking.dance_style_id == 18 %}
+
+                    {% include 'dances/_dance.html' %}
+
+                {% endif %}
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          INITIAL ENQUIRY TEXT REPLY
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+
+
+<!--Initial Enquiry TEXT Reply-->
+
+
+    <div class="container">
+    <div class="row">
+        <div class="col-12">
+
+
+
+            <p>Hi {{ booking.name }}, weve sent an email to {{ booking.email }}
+
+                {% if booking.initial_chat %}
+                    As per our conversation, <br>
+                {% else %}
+                    {%  if not booking.phone %}
+                        do you have a  contact mobile number you can email over. <br> Alternatively
+                    {% else  %}
+                      we tried to get in contact with you earlier on <br>
+                    {% endif %}
+                {% endif %}
+            you can get in contact with James our hen party coordinator on 07846518558</p>
+
+
+                <p class="blackbold">we are able to accommodate you for your <br>
+                    {{ booking.dance_style }} Hen Party  for  {{ booking.name }} in {{ booking.city }} on <br>
+                    {{ booking.event_date|date:"l jS   F Y"}} from {{ booking.start_time }} - {{ booking.end_time }}<br>
+                  We have a dance studio which is situated in the city centre in {{ booking.city }}</p>
+
+                <p>With over 2000 dance hen parties under our belt we run hen parties for many of the large hen party companies in the uk on a weekly basis </p>
+                <p class="exsadie">We currently have a special offer where if you book before the {{ booking.book_before_date|date:"l jS   F Y" }}  your dance party is £{{ booking.cost }}  all inclusive (that’s the same amount we charge the hen party companies)
+                    it lasts for 1.5 hrs and you can have as many people as you like at your  party </p>
+
+                <p>On booking there is a  £50 deposit to secure the dance studio   and the balance is paid up 2  days  before the workshop <br>
+                </p><br><br>
+
+              <p class="blackbold">LOCATIONS</p>
+
+
+
+                <p>LOCATION 1 <br> <strong>{{ booking.city }} Dance Centre </strong><br>
+                    {{ booking.venue_1.address}}<br>
+                    {{ booking.city }}<br>
+                    {{ booking.venue_1.postcode }}</p><br>
+
+                    {% if booking.venue_2 %}
+
+
+                    <p>LOCATION 2 <br><strong>{{ booking.city }} Dance Centre </strong><br>
+                        {{ booking.venue_2.address}}<br>
+                        {{ booking.city }}<br>
+                        {{ booking.venue_2.postcode }}</p>
+
+                    {% endif %}
+
+              <p>Kind Regards <br>
+              {{ booking.city }} Dance Centre <br>
+              Admin Team</p>
+        </div>
+    </div>
+    </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          EMAIL HEADING
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+          <p>
+                    {{ booking.dance_style }} Hen Party  for  {{ booking.name }} in {{ booking.city }} on
+                    {{ booking.event_date|date:"l jS   F Y"}} from {{ booking.start_time }} - {{ booking.end_time }}<br>
+         </p>
+       </div>
+    </div>
+  </div>
+    <div class="card">
+    <div class="card-header" id="headingFour">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          PAYPAL
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+      <div class="card-body">
+         <p>
+                    Deposit for {{ booking.dance_style }} Hen Party  for  {{ booking.name }} in {{ booking.city }} on
+                    {{ booking.event_date|date:"l jS   F Y"}} from {{ booking.start_time }} - {{ booking.end_time }}<br>
+         </p>
+      </div>
+    </div>
+  </div>
+    <div class="card">
+    <div class="card-header" id="headingFive">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+          SEND BOOKING EMAIL
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+
+
+      <div class="email-reply">
+          <div class="container">
+
+               <p> Hi {{ booking.name }}, <br>
+                             we look forward to seeing your <br>
+        <span class="blackbold">
+            {{ booking.dance_style }} Hen Party  for  {{ booking.name }} in {{ booking.city }} on <br>
+                              {{ booking.event_date|date:"l dS   F Y" }} from {{ booking.start_time }} - {{ booking.end_time }}<br>
+
+        </span>
+
+                              ps find booking invoice below
+                          </p>
+
+                          <p> Ps make sure times dates are correct also ps make a note of the addresse of the venue for the hen party its in the city centre in {{ booking.city }}
+                          </p>
+                          <p class="exsadie">You can either confirm the booking with a £50 deposit via bank transfer (details provided below) or pay pal with a  link from  our website
+                          </p><br>
+                          <p><span class="exsadie">
+                              Paypal ps click on link below
+                          </span><br><br>
+
+
+                              {{ booking.studio.studio_website }}/hen-party-{{ booking.city }}-{{ booking.name }}-{{ booking.dance_style }}.html
+                              <br>
+
+
+                              www.manchesterdancecentre.co.uk/hen-party-manchester-Anna-Ferguson-flash.html
+                          </p><br>
+                          <p><span class="exsadie">
+                              Bank Transfer
+                          </span> <br>
+                              ps find bank details for bacs transfer for the deposit ps use your name as  a reference
+                              <br>Via bacs <br>
+                              Bank is Santander <br>
+                              Sort Code is 09-01-28 <br>
+                              Account number is 64842861 <br>
+                              Name is  DANCE CENTRE UK <br>
+
+                          </p>
+                          <p>If you have any enquiries ps don’t hesitate to contact me at any time on 07846518558 <br>
+                              Kind regards <br>
+                              {{ booking.studio }} <br>
+                              Hen Party  Coordinator
+                          </p>
+                          <p>Hi {{ booking.name }}  here are the details for your  dance hen party in {{ booking.city }}  if your group could turn up 10 mins before the event that would be great
+
+                          </p>
+
+
+
+                <div class="row">
+
+                    <table class="table table-borderless">
+                       <thead>
+                       <tr>
+                           <th class="text-left">
+
+                           </th>
+                           <th class="text-center">
+                               <h4>Invoice </h4>
+                           </th>
+
+                           <th class="text-right">
+                               <h4></h4>
+                           </th>
+                       </tr>
+                       </thead>
+                       <tbody>
+                       <tr>
+                           <td>
+                               <p class="blackboldinv">
+                                   <h4>{{ booking.studio }}</h4>
+                                Phone : 07846518558 <br>
+                                HEAD OFFICE ADDRESS <br>
+                                  Third floor Suite 4 <br>
+                                  40-42 Jon Dalton Street <br>
+                                  Manchester <br>
+                                  M2 6LE <br>
+                              </p>
+                           </td>
+
+                           <td class="text-center">
+                               <h4>INVOICE #200{{ booking.id }}</h4>
+                           </td>
+
+                           <td class="text-right">
+                               <h4>{{ booking.name }}  </h4>
+                               <p class="blackboldinv">
+
+                                Mobile: {{ booking.phone }} <br>
+                                {{ booking.email }} <br>
+                                {{ booking.enquiry_date }} <br>
+                              </p>
+                           </td>
+                       </tr>
+                       </tbody>
+                    </table>
+
+
+                </div>
+
+
+
+      <!-- / end client details section -->
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>
+              <h4>Quantity</h4>
+            </th>
+            <th>
+              <h4>Description</h4>
+            </th>
+            <th class="text-right">
+              <h4>Cost</h4>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td>  <p class="blackbold">{{ booking.dance_style }} Hen Party  for  {{ booking.special_person }} in {{ booking.city }}<br>
+                {{ booking.event_date|date:"l dS   F Y" }}from {{ booking.start_time }} - {{ booking.end_time}} </p>
+           <p> Name of Special Person : {{ booking.special_person }}</p>
+            <p><span class="blackbold">Location</span> <br>
+
+                {{ booking.studio }}  @ <br>
+                {{ booking.confirmed_venue.address}}<br>
+                {{ booking.confirmed_venue.postcode }}
+
+            </p>
+
+                        <p>Ideas on What to Wear </p>
+                        <p>Trainers for your feet <br>
+                            Loose comfortable clothing on top</p>
+
+                        <br><br>
+                        </td>
+            <td class="text-right">£{{ booking.cost|add:"-50" }} paid up to 2 days <br> before the workshop <br> via bank transfer
+                <br><br><br>
+                £50 deposit <br> paid via paypal <br>
+                or bank transfer
+            </td>
+
+          </tr>
+          <tr>
+
+            <td class="text-right"></td>
+            <td class="text-right">Total : </td>
+            <td class="text-right">{{ booking.cost }}</td>
+          </tr>
+
+        </tbody>
+      </table>
+
+
+
+          </div>
+      </div>
+    </div>
+
+
+  </div>
+    <div class="card">
+    <div class="card-header" id="headingSix">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+          DAY B4 BOOKING TEXT
+        </button>
+      </h5>
+    </div>
+    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+      <div class="card-body">
+
+          <div class="container">
+              {% if  booking.balance_paid %}
+
+                    <h4>CUSTOMER DAY B4 BOOKING TEXT BALANCE PAID</h4> <br>
+
+                        <p> Hi {{ booking.name }} <br>
+                            we look forward to your <br>
+                        {{ booking.dance_style }} hen party in {{ booking.city }} on <br>
+                        {{ booking.event_date|date:"l jS   F Y"}} from {{ booking.start_time }} - {{ booking.end_time }} </p>
+
+                        <p>
+                        ps can you email or text the number of ladies in your group <br><br>
+                        your instructor on the day is {{ booking.teacher.first_name }}<br>
+                        <strong>contact number : </strong> {{ booking.teacher.mobile }}<br>
+                        </p>
+
+                        <p> we have recieved Full payment <br>
+                            Have Fun !!!! </p>
+
+
+                        <p>{{ booking.dance_style }} Hen Party  for  {{ booking.name }} in {{ booking.city }}<br>
+                            {{ booking.event_date|date:"l jS   F Y"}} from {{ booking.start_time  }} - {{ booking.end_time }} </p>
+
+                        <p> Name Of Hen:  {{ booking.special_person }}</p>
+
+                        <p>Location</p>
+
+                        <p> {{ booking.studio }}  @ <br>
+                            {{ booking.confirmed_venue}} <br>
+                            {{ booking.confirmed_venue.address}} <br>
+                            {{ booking.confirmed_venue.postcode}} <br>
+                        </p>
+
+                        <p>Ideas on What to Wear <br>
+                            Trainers for your feet <br>
+                            Loose comfortable clothing on top</p>
+
+                        <br><br>
+                        <hr>
+
+
+                {% else %}
+                    <h4>Day b4 booking balance needed</h4>
+
+
+                    <p> Hi {{ booking.name}} weve sent an email to  {{ booking.email }} <br>
+                    we look forward to your
+                        <br>
+                    {{ booking.dance_style }} hen party in {{ booking.city }} on <br>
+                    {{ booking.event_date|date:"l jS   F Y"}} from {{ booking.start_time }}-{{ booking.end_time }} </p>
+                    <p>
+                    ps can you email or text the number of ladies in your group <br>
+                    your instructor on the day is {{ booking.teacher.first_name }}<br>
+                    <strong>contact number : </strong> {{ booking.teacher.mobile }}<br>
+                    </p>
+                    <p>
+                    we have received your deposit of £50 Thank you <br>
+                        if you can pay the balance of £{{ booking.cost|add:"-50" }} via bank transfer up to 2 days before the workshop <br>
+                        That would be great <br>
+                        weve sent you an email with bank details
+
+                    </p>
+
+                    <p>
+                    kind regards <br>
+                    {{ booking.studio }}<br>
+                    admin team
+                    </p>
+
+                    <p>{{ booking.dance_style }} Hen Party  for  {{ booking.name }} in {{ booking.city }}<br>
+                    {{ booking.event_date|date:"l jS   F Y"}} from {{ booking.start_time }} - {{ booking.end_time}} </p>
+
+                    <p> Name Of Special Person:  {{ booking.special_person }}</p>
+
+                    <p>Location</p>
+
+                    <p> {{ booking.studio }}  @ <br>
+                    {{ booking.confirmed_venue}} <br>
+                    {{ booking.confirmed_venue.address}} <br>
+                    {{ booking.confirmed_venue.postcode}} <br>
+                    </p>
+
+                    <p>Ideas on What to Wear <br>
+                        Trainers for your feet <br>
+                        Loose comfortable clothing on top</p>
+
+                    <br><br>
+                    <hr>
+
+                {% endif %}
+          </div>
+
+      </div>
+    </div>
+  </div>
+    <div class="card">
+    <div class="card-header" id="headingSeven">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+          TEACHER BOOKING TEXT
+        </button>
+      </h5>
+    </div>
+    <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
+      <div class="card-body">
+          <div class="container">
+              {% if booking.agency %}
+
+                        <h4> TEACHER BOOKING TEXT FOR SUPPLIERS</h4> <br><br><br>
+
+                            <p> Hi {{ booking.teacher }} hope all is well and thank you <br>
+                                PS TEXT BACK TO CONFIRM YOU HAVE RECIEVED MESSAGE X </p>
+
+                            <p> on the day ps <br>
+                                1.) arrive 30 mins before  get set up <br>
+                                2.) text me in the morning to let me know all is ok <br>
+                                3.) Text me on arrival <br>
+                                4.) Take Back up Music sytem or Cd if possible <br>
+                                5.) Email invoice and text over Bank details so we can pay you <br>
+                                6.)ps Take a photo of the group and send it to us at the end of the session  br
+                                6.) HAVE FUN !!!! X </p>
+
+                            <p>{{ booking.group_size }} ladies in the group <br>
+                                PAY {{ booking.teacher.fee}}ph</p>
+
+                            <p>{{ booking.dance_style }} Hen Party  for  {{ booking.special_person }} in {{ booking.city }}<br>
+                            {{ booking.event_date|date:"l jS   F Y"}} from {{ booking.start_time }} - {{ booking.end_time}} </p>
+
+                            <p> Name Of Special Person:  {{ booking.special_person }}</p>
+
+                            <p>Location</p>
+
+                            <p>
+                                {{ booking.studio}} @ <br>
+                                {{ booking.confirmed_venue}}<br>
+                                {{ booking.confirmed_venue.address}}<br>
+                                {{ booking.confirmed_venue.postcode}}<br>
+                            </p>
+
+
+
+
+                            <br><br>
+                            <hr>
+
+                    {% else %}
+
+                        <h4> TEACHER BOOKING TEXT FOR PRIVATE INDIVIDUALS </h4> <br><br><br>
+
+                        <p> Hi {{ booking.teacher }} hope all is well and thank you <br>
+                            PS TEXT BACK TO CONFIRM YOU HAVE RECIEVED MESSAGE X </p>
+
+                        <p> 5 days before ps <br>
+                            1.)contact the group to let them know you are running the workshop X <br>
+                            2.)find out no of people in the groups <br>
+                            3.)confirm you have the same location and times as well</p>
+
+                        <p>{{ booking.name }} <br>
+                        {{ booking.phone }}</p>
+
+                        <p> on the day ps <br>
+                            1.) arrive 30 mins before  get set up <br>
+                            2.) text me in the morning to let me know all is ok <br>
+                            3.) Text me on arrival <br>
+                            4.) Take Back up Music sytem or Cd if possible <br>
+                            5.) Email invoice and text over Bank details so we can pay you <br>
+                            6.)ps Take a photo of the group and send it to us at the end of the session <br>
+                            6.) HAVE FUN !!!! X </p>
+
+                        <p> {{ booking.group_size }} ladies in the group <br>
+                            (this is an estimate) ps confirm with group their number size <br>
+                            PAY {{ booking.teacher_fee }}ph</p>
+
+                        <p>{{ booking.dance_style }} Hen Party  for  {{ booking.name }} in {{ booking.city }}<br>
+                            {{ booking.event_date|date:"l jS   F Y"}} from {{ booking.start_time  }} - {{ booking.end_time  }} </p>
+
+                        <p> Name Of Hen:  {{ booking.special_person }}</p>
+
+                        <p>Location</p>
+
+                        <p> {{ booking.studio}} @ <br>
+                        {{ booking.confirmed_venue}}<br>
+                        {{ booking.confirmed_venue.address}}<br>
+                        {{ booking.confirmed_venue.postcode}}<br>
+                        </p>
+
+
+
+
+                        <br><br>
+                        <hr>
+                        <br><br>
+
+                    {% endif %}
+
+
+          </div>
+
+      </div>
+    </div>
+  </div>
+    <div class="card">
+    <div class="card-header" id="headingEight">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+          TEACHER HIRE JOB
+        </button>
+      </h5>
+    </div>
+    <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion">
+      <div class="card-body">
+
+          <div class="container">
+            <p>We have the following job ps can youn let me know if you are available </p>
+            <p>Pay is £</p>
+            <p>{{ booking.dance_style }} Hen Party  for  {{ booking.name }} in {{ booking.city }}<br>
+            {{ booking.event_date|date:"l jS   F Y"}} from {{ booking.start_time  }} - {{ booking.end_time  }} </p>
+            <p>Location</p>
+
+            <p> {{ booking.studio}} @ <br>
+                {{ booking.confirmed_venue}}<br>
+                {{ booking.confirmed_venue.address}}<br>
+                {{ booking.confirmed_venue.postcode}}<br>
+            </p>
+          </div>
+
+
+
+      </div>
+    </div>
+  </div>
+    <div class="card">
+    <div class="card-header" id="headingNine">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+          INVOICE
+        </button>
+      </h5>
+    </div>
+    <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion">
+      <div class="card-body">
+
+          <div class="container">
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+
+                    <table class="table table-borderless">
+                       <thead>
+                       <tr>
+                           <th class="text-left">
+
+                           </th>
+                           <th class="text-center">
+                               <h4>Invoice </h4>
+                           </th>
+
+                           <th class="text-right">
+                               <h4></h4>
+                           </th>
+                       </tr>
+                       </thead>
+                       <tbody>
+                       <tr>
+                           <td>
+                               <p class="blackboldinv">
+                                   <h4>{{ booking.studio }}</h4>
+                                Phone : 07846518558 <br>
+                                HEAD OFFICE ADDRESS <br>
+                                  Third floor Suite 4 <br>
+                                  40-42 Jon Dalton Street <br>
+                                  Manchester <br>
+                                  M2 6LE <br>
+                              </p>
+                           </td>
+
+                           <td class="text-center">
+                               <h4>INVOICE #200{{ booking.id }}</h4>
+                           </td>
+
+                           <td class="text-right">
+                               <h4>{{ booking.name }}  </h4>
+                               <p class="blackboldinv">
+
+                                Mobile: {{ booking.phone }} <br>
+                                {{ booking.email }} <br>
+                                {{ booking.enquiry_date }} <br>
+                              </p>
+                           </td>
+                       </tr>
+                       </tbody>
+                    </table>
+
+
+
+
+
+      <!-- / end client details section -->
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>
+              <h4>Quantity</h4>
+            </th>
+            <th>
+              <h4>Description</h4>
+            </th>
+            <th class="text-right">
+              <h4>Cost</h4>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td>  <p class="blackbold">{{ booking.dance_style }} Hen Party  for  {{ booking.special_person }} in {{ booking.city }}<br>
+                {{ booking.event_date|date:"l dS   F Y" }}from {{ booking.start_time }} - {{ booking.end_time}} </p>
+           <p> Name of Special Person : {{ booking.special_person }}</p>
+            <p><span class="blackbold">Location</span> <br>
+
+                {{ booking.studio }}  @ <br>
+                {{ booking.confirmed_venue.address}}<br>
+                {{ booking.confirmed_venue.postcode }}
+
+            </p>
+
+                        <p>Ideas on What to Wear </p>
+                        <p>Trainers for your feet <br>
+                            Loose comfortable clothing on top</p>
+
+                        <br><br>
+                        </td>
+            <td class="text-right">£{{ booking.cost|add:"-50" }} paid up to 2 days <br> before the workshop <br> via bank transfer
+                <br><br><br>
+                £50 deposit <br> paid via paypal <br>
+                or bank transfer
+            </td>
+
+          </tr>
+          <tr>
+
+            <td class="text-right"></td>
+            <td class="text-right">Total : </td>
+            <td class="text-right">{{ booking.cost }}</td>
+          </tr>
+
+        </tbody>
+      </table>
+
+
+
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </div>
+
+      </div>
+    </div>
+  </div>
+
+    <div class="card">
+    <div class="card-header" id="headingTen">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+          Collapsible Group Item #10
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordion">
+      <div class="card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}
