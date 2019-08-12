@@ -140,3 +140,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'pages:index'
 LOGIN_URL = 'login'
 
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
