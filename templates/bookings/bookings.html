@@ -73,6 +73,7 @@
       <th scope="col">Style</th>
       <th scope="col">Booking sent</th>
       <th scope="col">Deposit</th>
+      <th scope="col">Public</th>
       <th scope="col">Date</th>
       <th scope="col">Venue</th>
       <th scope="col">Teacher</th>
@@ -98,6 +99,14 @@
           {% else %}
               <span class="false_button">NP</span>
           {% endif %}
+      </td>
+        <td>
+              {% if booking.is_advertised == True %}
+                  <span class="true_button">Yes</span>
+              {% else %}
+                  <span class="false_button">No</span>
+              {% endif %}
+          </td>
 
       <td>{{ booking.event_date }}</td>
 

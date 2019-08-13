@@ -9,7 +9,7 @@ from cities.choices import city_choices, options, dance_choices
 def index(request):
 
     today = datetime.today()
-    bookings = Booking.objects.filter(event_date__gte=today).order_by('event_date')
+    bookings = Booking.objects.filter(is_advertised=True).filter(event_date__gte=today).order_by('event_date')
 
 
     paginator = Paginator(bookings, 4)
@@ -40,7 +40,7 @@ def job(request, booking_id):
 
 def job_search(request):
     today = datetime.today()
-    queryset_list = Booking.objects.filter(event_date__gte=today).order_by('event_date')
+    queryset_list = Booking.objects.filter(is_advertised=True).filter(event_date__gte=today).order_by('event_date')
 
     # Dance style
     if 'style' in request.GET:

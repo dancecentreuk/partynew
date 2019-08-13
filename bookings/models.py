@@ -35,6 +35,7 @@ class Booking(models.Model):
     teacher_texted = models.BooleanField(default=False)
     teacher_paid = models.BooleanField(default=False)
     cost = models.IntegerField(blank=True)
+    is_advertised = models.BooleanField(default=False)
     workshop_booked = models.BooleanField(default=False)
     booking_sent = models.BooleanField(default=False)
     deposit_paid = models.BooleanField(default=False)

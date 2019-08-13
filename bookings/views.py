@@ -65,7 +65,7 @@ class BookingCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
                'dance_style', 'dance_style2', 'group_size', 'enquiry_date', 'city', 'venue_1', 'venue', 'venue_2',
                'confirmed_venue', 'venue_booked', 'venue_paid', 'teacher', 'teacher_fee', 'teacher_confirmed', 'teacher_texted',
                'teacher_paid', 'cost', 'workshop_booked', 'booking_sent', 'deposit_paid', 'agency', 'balance_paid',
-               'problem', 'booking_notes', 'studio']
+               'problem', 'booking_notes', 'studio', 'is_advertised',]
 
     def test_func(self):
         if self.request.user.is_staff:
@@ -81,7 +81,7 @@ class BookingUpdateView(LoginRequiredMixin, UserPassesTestMixin,  UpdateView):
               'confirmed_venue', 'venue_booked', 'venue_paid', 'teacher', 'teacher_fee', 'teacher_confirmed',
               'teacher_texted',
               'teacher_paid', 'cost', 'workshop_booked', 'booking_sent', 'deposit_paid', 'agency', 'balance_paid',
-              'problem', 'booking_notes', 'studio']
+              'problem', 'booking_notes', 'studio', 'is_advertised',]
 
     def test_func(self):
         if self.request.user.is_staff:

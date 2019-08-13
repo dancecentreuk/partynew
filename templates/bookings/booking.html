@@ -82,6 +82,15 @@
                             <td> {{ booking.teacher }}</td>
                         </tr>
                         <tr>
+                            <td>Is Advertised</td>
+                            <td>{% if booking.is_advertised == False %}
+                                <button type="button" class="btn-danger btn-sm ">Not Advertised</button>
+                                {% else %}
+                                <button type="button" class="btn-info btn-sm">Advertised</button>
+                                {% endif %}
+
+                            </td>
+                        <tr>
                             <td>Teacher Confirmed</td>
                             <td>{% if booking.teacher_confirmed == True %}
                                 <button type="button" class="btn-info">Teacher Confirmed</button>
