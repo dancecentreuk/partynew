@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a68773b-5a5e-4dcc-b9fa-d541fc5a9fdc" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/danceuk/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/danceuk/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cities/choices.py" beforeDir="false" afterPath="$PROJECT_DIR$/cities/choices.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,8 +21,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="105">
+              <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -35,11 +36,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/danceuk/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="80" selection-start-line="80" selection-end-line="92" />
+            <state relative-caret-position="-452">
+              <caret line="88" column="31" lean-forward="true" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="choices.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cities/choices.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="388">
+              <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -89,7 +99,6 @@
         <option value="$PROJECT_DIR$/templates/bookings/search.html" />
         <option value="$PROJECT_DIR$/teachers/views.py" />
         <option value="$PROJECT_DIR$/cities/views.py" />
-        <option value="$PROJECT_DIR$/cities/choices.py" />
         <option value="$PROJECT_DIR$/bookings/admin.py" />
         <option value="$PROJECT_DIR$/contacts/admin.py" />
         <option value="$PROJECT_DIR$/pages/urls.py" />
@@ -108,9 +117,10 @@
         <option value="$PROJECT_DIR$/templates/bookings/booking_confirm_delete.html" />
         <option value="$PROJECT_DIR$/templates/bookings/booking.html" />
         <option value="$PROJECT_DIR$/bookings/views.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/danceuk/settings.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/cities/choices.py" />
       </list>
     </option>
   </component>
@@ -141,6 +151,11 @@
             <path>
               <item name="danceukproject" type="b2602c69:ProjectViewProjectNode" />
               <item name="danceukproject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="danceukproject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="danceukproject" type="462c0819:PsiDirectoryNode" />
+              <item name="cities" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="danceukproject" type="b2602c69:ProjectViewProjectNode" />
@@ -192,7 +207,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="722" y="0" width="718" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -201,8 +216,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3272727" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25679544" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3272727" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.5310651" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -377,13 +392,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="844">
           <caret line="117" column="39" selection-start-line="117" selection-start-column="39" selection-end-line="117" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cities/choices.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -601,13 +609,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -615,10 +616,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/danceuk/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="80" selection-start-line="80" selection-end-line="92" />
+        <state relative-caret-position="-452">
+          <caret line="88" column="31" lean-forward="true" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cities/choices.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
         </state>
       </provider>
     </entry>
