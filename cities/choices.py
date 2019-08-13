@@ -82,19 +82,27 @@ dance_choices = [
 
     ('80s', '80\'s'),
     ('90s', '90\'s'),
+    ('abba', 'Abba'),
     ('belly', 'Belly dance'),
     ('beyonce', 'Beyonce Single ladies'),
     ('bollywood', 'Bollywood'),
+    ('britney', 'Britney'),
     ('burlesque', 'Burlesque'),
+    ('charleston', 'Charleston'),
     ('cheerleading', 'Cheerleading'),
     ('chicago', 'Chicago'),
     ('commercial', 'Commercial'),
     ('dirty_dancing', 'Dirty Dancing'),
     ('fame', 'Fame'),
     ('flamenco', 'Flamenco'),
+    ('flash_dance', 'Flash Dance'),
+    ('greatest_showman', 'Greatest Showman'),
     ('grease', 'Grease'),
     ('pole', 'Pole Dancing'),
     ('salsa', 'Salsa'),
+    ('spice_girls', 'Spice Girls'),
+    ('street', 'Street Dance'),
+    ('strictly', 'Strictly'),
     ('thriller', 'Thriller'),
 
 ]
@@ -103,10 +111,20 @@ dance_choices = [
 dance_styles =[
 
     ('ballet', 'Ballet'),
+    ('ballroom', 'Ballroom'),
     ('belly_dance', 'Belly Dance'),
+    ('bollywood', 'Bollywood Dance'),
+    ('burlesque', 'Burlesque'),
     ('commercial', 'Commercial'),
     ('contemporary', 'Contemporary'),
-    ('street_dance', 'Street Dance')
+    ('flamenco', 'Flamenco'),
+    ('jazz', 'Jazz'),
+    ('pole_dancing', 'Pole Dancing'),
+    ('salsa', 'Salsa'),
+    ('samba', 'Samba'),
+    ('street_dance', 'Street Dance'),
+    ('tango', 'Tango'),
+    ('tap', 'Tap'),
 
 
 
