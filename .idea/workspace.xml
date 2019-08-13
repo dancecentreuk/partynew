@@ -9,6 +9,8 @@
       <change beforePath="$PROJECT_DIR$/cities/choices.py" beforeDir="false" afterPath="$PROJECT_DIR$/cities/choices.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/bookings/booking.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bookings/booking.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/bookings/bookings.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bookings/bookings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -73,6 +75,15 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/pages/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="302">
+              <caret line="101" column="7" selection-start-line="101" selection-start-column="7" selection-end-line="101" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bookings/views.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -94,11 +105,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bookings.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="bookings.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/bookings/bookings.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-176">
-              <caret line="55" selection-start-line="55" selection-end-line="55" />
+            <state relative-caret-position="411">
+              <caret line="117" column="19" lean-forward="true" selection-start-line="113" selection-start-column="8" selection-end-line="117" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -106,15 +117,6 @@
       <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bookings/forms.py">
           <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="_80s.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/dances/_80s.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" lean-forward="true" selection-end-line="70" />
-            </state>
-          </provider>
         </entry>
       </file>
     </leaf>
@@ -148,7 +150,6 @@
         <option value="$PROJECT_DIR$/templates/cities/venue_search.html" />
         <option value="$PROJECT_DIR$/danceuk/static/css/custom.css" />
         <option value="$PROJECT_DIR$/templates/pages/job_search.html" />
-        <option value="$PROJECT_DIR$/templates/pages/index.html" />
         <option value="$PROJECT_DIR$/templates/bookings/search.html" />
         <option value="$PROJECT_DIR$/teachers/views.py" />
         <option value="$PROJECT_DIR$/cities/views.py" />
@@ -156,7 +157,6 @@
         <option value="$PROJECT_DIR$/contacts/admin.py" />
         <option value="$PROJECT_DIR$/pages/urls.py" />
         <option value="$PROJECT_DIR$/danceuk/urls.py" />
-        <option value="$PROJECT_DIR$/templates/bookings/bookings.html" />
         <option value="$PROJECT_DIR$/templates/contacts/contact.html" />
         <option value="$PROJECT_DIR$/templates/partials/_navbar.html" />
         <option value="$PROJECT_DIR$/contacts/models.py" />
@@ -184,6 +184,8 @@
         <option value="$PROJECT_DIR$/pages/views.py" />
         <option value="$PROJECT_DIR$/bookings/views.py" />
         <option value="$PROJECT_DIR$/templates/bookings/booking.html" />
+        <option value="$PROJECT_DIR$/templates/bookings/bookings.html" />
+        <option value="$PROJECT_DIR$/templates/pages/index.html" />
       </list>
     </option>
   </component>
@@ -245,6 +247,12 @@
               <item name="danceukproject" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="bookings" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="danceukproject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="danceukproject" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="danceukproject" type="b2602c69:ProjectViewProjectNode" />
@@ -356,13 +364,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="14" lean-forward="true" selection-end-line="19" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pages/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="91" column="36" selection-start-line="91" selection-start-column="36" selection-end-line="91" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -667,18 +668,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bookings/forms.py">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/bookings/booking.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="88" column="88" selection-start-line="88" selection-start-column="88" selection-end-line="88" selection-end-column="88" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bookings/views.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -690,17 +688,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/bookings/booking.html">
+    <entry file="file://$PROJECT_DIR$/pages/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="88" column="88" selection-start-line="88" selection-start-column="88" selection-end-line="88" selection-end-column="88" />
+        <state relative-caret-position="176">
+          <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/bookings/bookings.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-176">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        <state relative-caret-position="411">
+          <caret line="117" column="19" lean-forward="true" selection-start-line="113" selection-start-column="8" selection-end-line="117" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pages/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="101" column="7" selection-start-line="101" selection-start-column="7" selection-end-line="101" selection-end-column="7" />
         </state>
       </provider>
     </entry>
